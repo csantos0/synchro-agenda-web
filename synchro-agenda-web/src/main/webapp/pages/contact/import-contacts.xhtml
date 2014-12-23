@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">	
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">Synchro - Agenda de Contatos - Importacao GMAIL</ui:define>
+
+		<ui:define name="body">
+			
+			<h:outputText value="Para importar os contatos do Gmail, Prossiga inserindo um usuario/senha do gmail valido" style="font-weight: bold"/>	
+			<br/><br/>
+								
+				<h:form id="formImport">
+					<p:growl id="msgsImport" showDetail="true" />
+					
+					<p:panelGrid id="displayImport" columns="2" cellpadding="4" style="margin:0 auto;">												
+						<h:outputText value="Email: " />
+						<p:inputText value="#{googleContactView.user}" size="30"  
+						        	 required="true" requiredMessage="Insira um email valido"/>
+						
+						<h:outputText value="Senha: " />
+						<p:password value="#{googleContactView.password}" size="30" 
+								    required="true" requiredMessage="Insira uma senha valida"/>										
+												
+						<f:facet name="footer">
+							<p:commandButton action="#{googleContactView.importGmailContacts}" update="idDtGoogle, msgsImport"
+								    	     value="Logar" icon="ui-icon-check" ajax="true" />								    	
+						</f:facet>							
+					</p:panelGrid>
+					
+					<br/><br/>
+					
+					<p:dataTable value="#{googleContactView.contacts}" var="contact" id="idDtGoogle" rows="10" rowsPerPageTemplate="10,15,50" paginator="true" 
+				 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				 			 selection="#{googleContactView.selectedContacts}" rowKey="#{contact.model}" 
+				 			 currentPageReportTemplate="Exibindo {startRecord}-{endRecord} de {totalRecords}" >	
+				 			 
+						<f:facet name="header"> Contatos Ativos no Gmail </f:facet>
+						
+						<p:column selectionMode="multiple" style="width:2%;text-align:center"/>
+						
+						<p:column style="width:50%">
+			                <f:facet name="header">Nome</f:facet>
+			                <h:outputText value="#{contact.name} #{contact.surname}" />
+			            </p:column>
+			            <p:column style="width:25%">
+			                <f:facet name="header">Email</f:facet>
+			                <h:outputText value="#{contact.email}" />
+			            </p:column>
+			            <p:column style="width:23%">
+			                <f:facet name="header">Telefone</f:facet>
+			                <h:outputText value="#{contact.phone}" />
+			            </p:column>
+			            
+			            <f:facet name="footer">			            	
+		                	<p:commandButton value="Importar Contatos" action="#{googleContactView.importToContacts}" ajax="true"  icon="ui-icon-contact" title="Importar Contatos"/>
+		                	<p:button value="Voltar" outcome="#{googleContactView.goToManage()}" icon="ui-icon-arrowreturnthick-1-w" ajax="false" />
+			            </f:facet>
+					</p:dataTable>
+					
+				</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

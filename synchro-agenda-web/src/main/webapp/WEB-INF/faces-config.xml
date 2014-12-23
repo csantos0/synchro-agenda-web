@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<application>		
+		<message-bundle>application</message-bundle>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	<navigation-rule>		
+		<navigation-case>
+			<from-action>#{loginView.register}</from-action>
+			<from-outcome>register_success</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>
+			<from-action>#{contactView.addContact}</from-action>
+			<from-outcome>add-contact-success</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>
+			<from-action>#{contactView.updateContact}</from-action>
+			<from-outcome>update-contact-success</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>			
+			<from-outcome>go-to-add-form</from-outcome>
+			<to-view-id>/pages/contact/form-contact.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>			
+			<from-outcome>go-to-manage</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>			
+			<from-outcome>import_success</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>	
+	
+	<navigation-rule>		
+		<navigation-case>			
+			<from-outcome>go-to-edit-form</from-outcome>
+			<to-view-id>/pages/contact/form-contact.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>		
+		<navigation-case>			
+			<from-outcome>go-to-google-import</from-outcome>
+			<to-view-id>/pages/contact/import-contacts.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>	
+		<navigation-case>			
+			<from-outcome>go-to-register</from-outcome>
+			<to-view-id>/pages/security/register.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>		
+		<navigation-case>
+			<from-action>#{loginView.logout}</from-action>
+			<from-outcome>loggedout</from-outcome>
+			<to-view-id>/pages/contact/manage.jsf</to-view-id>
+			<redirect></redirect>
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

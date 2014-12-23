@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">Synchro - Agenda de Contatos - Acesso Negado</ui:define>
+
+		<ui:define name="body">
+			<p:panel header="Acesso Negado">
+				<center>				
+					<h:outputText value="Voce nao possui acesso a esta pagina..."/>	
+					<br />
+					<br />
+					<p:separator /> 
+					<br />
+					<h:outputLink value="/pages/contact/manage.jsf">
+						<h:outputText value="Voltar"/>
+					</h:outputLink>							
+				</center>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

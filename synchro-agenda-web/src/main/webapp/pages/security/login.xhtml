@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">Synchro - Agenda de Contatos - Login</ui:define>
+
+		<ui:define name="body">
+							
+				<h:form prependId="false" styleClass="loginPanelStyle">					
+					<p:growl id="msgs" showDetail="true" sticky="false" />  
+						
+						<p:focus context="idPanelLogin"/>
+						<p:panelGrid id="idPanelLogin" columns="2">
+						
+							<f:facet name="header">
+			                    Insira as credenciais
+			                </f:facet>	                									
+						
+							<h:outputText value="Usuário: "  />
+							<p:inputText id="j_username" required="true" size="32" maxlength="10" requiredMessage="Necessario digitar um usuario valido" />
+							<h:outputText value="Senha: "  />
+							<p:password id="j_password" required="true" size="32" maxlength="10" requiredMessage="Necessario digitar uma senha valida" />
+								
+							<f:facet name="footer">
+								<center>
+									<p:commandButton value="Entrar" type="submit" update="msgs" action="#{loginView.doLogin}" icon="ui-icon-check" ajax="false"/>
+									<p:button value="Registrar"  outcome="#{loginView.goToRegister()}" icon="ui-icon-note" ajax="false" />
+								</center>
+							</f:facet>	
+												
+						
+					</p:panelGrid>					
+				</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

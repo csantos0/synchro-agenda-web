@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">	
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">Synchro - Agenda de Contatos - Principal</ui:define>
+
+		<ui:define name="body">				
+			
+			<h:outputText value="Usuario Logado: #{contactView.loggedUser}" style="font-weight: bold"/>	
+			<br/><br/>
+			
+			<h:form id="formDt">
+							
+				<h:outputText value="Busca Por Nome: " style="font-weight: bold"/>
+				<p:inputText value="#{contactView.buscaNome}" size="30"  />
+				<p:commandButton action="#{contactView.searchByName}" update="idDtContact" 
+				 					 value="Pesquisar" icon="ui-icon-search" ajax="true" />			
+				
+				<br/>
+				<br/>
+				
+				<p:dataTable value="#{contactView.contactsFromUser}" var="contact" id="idDtContact" rows="10" rowsPerPageTemplate="10,15,50" paginator="true" 
+				 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				 			 selection="#{contactView.contactDTO}" rowKey="#{contact.id}" 
+				 			 currentPageReportTemplate="Exibindo {startRecord}-{endRecord} de {totalRecords}" >	
+					<f:facet name="header"> Agenda de Contatos </f:facet>		
+					
+					<p:column selectionMode="single" style="width:2%" /> 
+					            
+		            <p:column style="width:25%">
+		                <f:facet name="header">Nome</f:facet>
+		                <h:outputText value="#{contact.name} #{contact.surname}" />
+		            </p:column>
+		            <p:column style="width:21%">
+		                <f:facet name="header">Email</f:facet>
+		                <h:outputText value="#{contact.email}" />
+		            </p:column>
+		            <p:column style="width:10%">
+		                <f:facet name="header">Telefone</f:facet>
+		                <h:outputText value="#{contact.phone}" />
+		            </p:column>
+		            <p:column style="width:23%">
+		                <f:facet name="header">Endereço</f:facet>
+		                <h:outputText value="#{contact.street}" />
+		            </p:column>
+		            <p:column style="width:4%">
+		                <f:facet name="header">Nº</f:facet>
+		                <h:outputText value="#{contact.number}" />
+		            </p:column>
+		            <p:column style="width:15%">
+		                <f:facet name="header">Cidade</f:facet>
+		                <h:outputText value="#{contact.city}" />
+		            </p:column>		            
+		           
+		            <f:facet name="footer">
+		               <p:commandButton value="Novo" oncomplete="PF('newUserDialog').show()" icon="ui-icon-star" title="Cria um novo contato"/>
+		               <p:commandButton value="Detalhes" oncomplete="PF('editUserDialog').show()" update=":idUpdateDialog" icon="ui-icon-pencil" title="Edita um contato"/>
+		               <p:commandButton value="Remover" action="#{contactView.removeContact}" ajax="true" update="idDtContact" icon="ui-icon-close" title="Deleta um contato"/>
+		               <p:button value="Importar Gmail" outcome="#{contactView.goToGoogleImport()}" icon="ui-icon-person" ajax="false" />	              
+		            </f:facet>
+		        </p:dataTable>	  	
+									
+			</h:form>			
+			
+			<p:dialog id="idNewDialog" header="Incluir Novo Contato" widgetVar="newUserDialog" resizable="false">
+       			<ui:include src="/pages/contact/form.xhtml" />
+       		</p:dialog>
+			
+			<p:dialog id="idUpdateDialog" header="Editar Contato" widgetVar="editUserDialog" resizable="false">
+       			<ui:include src="/pages/contact/form-edit.xhtml" />
+       		</p:dialog>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

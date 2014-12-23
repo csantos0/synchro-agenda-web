@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.com.synchro</groupId>
+	<artifactId>synchro-agenda-web</artifactId>
+	<name>synchro-agenda-web</name>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<spring.version>3.2.6.RELEASE</spring.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
+	</properties>
+
+	<build>
+		<finalName>synchro-agenda-web</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+	<dependencies>
+
+		<!-- <dependency> <groupId>xalan</groupId> <artifactId>xalan</artifactId> 
+			<version>2.7.1</version> <scope>provided</scope> <exclusions> <exclusion> 
+			<artifactId>xml-apis</artifactId> <groupId>xml-apis</groupId> </exclusion> 
+			</exclusions> </dependency> -->
+
+		<!-- JEE -->
+		<!-- <dependency> <groupId>org.jboss.spec</groupId> <artifactId>jboss-javaee-web-6.0</artifactId> 
+			<version>3.0.1.Final</version> <type>pom</type> <scope>provided</scope> </dependency> -->
+
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>servlet-api</artifactId>
+	<version>2.5</version>
+</dependency>
+
+
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- Spring framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<!-- Rest -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.9</version>
+			<!-- <exclusions> <exclusion> <artifactId>jaxb-api</artifactId> <groupId>javax.xml.bind</groupId> 
+				</exclusion> <exclusion> <artifactId>jaxb-impl</artifactId> <groupId>com.sun.xml.bind</groupId> 
+				</exclusion> </exclusions> -->
+		</dependency>
+
+		<!-- Primefaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+		<!-- Google Contacts API -->
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>gdata-client-1.0</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>gdata-client-meta-1.0</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>gdata-contacts-3.0</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>gdata-contacts-meta-3.0</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>gdata-core-1.0</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>guava-11.0.2</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.google.api.contacts</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- Log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+	</dependencies>
+</project>

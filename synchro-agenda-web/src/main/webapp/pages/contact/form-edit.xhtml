@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<p:outputPanel id="opEditContact" style="text-align:left;">
+		<h:form id="formEdit" prependId="false">
+			<p:growl id="msgsEdit" showDetail="true" />
+			
+			 <p:panelGrid id="displayEditContact" rendered="#{not empty contactView.contactDTO}" columns="2" cellpadding="4" style="margin:0 auto;">
+			 
+			 	<h:outputText value="Nome: " />
+				<p:inputText value="#{contactView.contactDTO.name}" size="30"  
+							 required="true" requiredMessage="Insira um nome valido">
+					<f:validator validatorId="custom.repeteadNamelValidator" />			 
+				</p:inputText>
+				
+				<h:outputText value="Sobrenome: " />
+				<p:inputText value="#{contactView.contactDTO.surname}" size="30" >
+					<f:validator validatorId="custom.repeteadNamelValidator" />			 
+				</p:inputText>
+				
+				<h:outputText value="Email: " />
+				<p:inputText value="#{contactView.contactDTO.email}" size="30"  
+							 required="true" requiredMessage="Insira um email valido"/>
+				
+				<h:outputText value="Telefone: " />
+				<p:inputText value="#{contactView.contactDTO.phone}" size="30"
+							 required="true" requiredMessage="Insira um telefone valido"/>
+				
+				<h:outputText value="Cep: " />
+				<h:panelGroup >
+					<p:inputText value="#{contactView.contactDTO.zipcode}" size="25"  />
+				 	<p:commandButton action="#{contactView.searchEditCep(contactView.contactDTO.zipcode)}" update="displayEditContact, :formEdit:msgsEdit" 
+				 					 icon="ui-icon-search" ajax="true" />
+				</h:panelGroup>
+				
+				<h:outputText value="Endereço: " />
+				<p:inputText value="#{contactView.contactDTO.street}" size="30"  />
+				
+				<h:outputText value="Nº: " />
+				<p:inputText value="#{contactView.contactDTO.number}" size="30"  />
+				
+				<h:outputText value="Bairro: " />
+				<p:inputText value="#{contactView.contactDTO.district}" size="30"  />
+				
+				<h:outputText value="UF: " />
+				<p:inputText value="#{contactView.contactDTO.city}" size="30"  />				
+		  
+		  		<f:facet name="footer">
+                	<p:commandButton action="#{contactView.updateContact}" value="Atualizar" update=":formDt:idDtContact, :formEdit:msgsEdit" icon="ui-icon-check"
+                				     oncomplete="handleSubmitRequestUp(xhr, status, args, 'idUpdateDialog','formEdit');"/>
+                    <p:commandButton type="reset" value="Reset" icon="ui-icon-trash" />                            
+                </f:facet>
+                    
+			 </p:panelGrid>
+			 
+			 <script type="text/javascript">  
+			    function handleSubmitRequestUp(xhr, status, args, dialogName, formName) {  
+			            dialog = jQuery('#'+dialogName);
+			        if(args.validationFailed) {  
+			            dialog.effect("shake", { times:3 }, 100);  
+			        } else {
+			            clearForm(formName);
+			            newUserDialog.hide(); 
+			            userDialog.hide(); 
+			        }  
+			    }
+			    function clearForm(formName){
+			        jQuery('#'+formName).each(function(){
+				        this.reset();
+				});
+			    }
+			</script> 
+			
+		</h:form>
+  	</p:outputPanel>	
+		
+</ui:composition>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">Synchro - Agenda de Contatos - Registro</ui:define>
+
+		<ui:define name="body">
+								
+				<h:form prependId="false" styleClass="registerPanelStyle">
+					<p:panel id="panel" header="Para acessar a agenda de contatos, Por favor registre-se" 
+							 style="width:750px">
+						<p:focus context="panel"/>
+
+						<h:panelGrid columns="3">								
+												
+							<p:outputLabel for="nome" value="Nome" />
+							<p:inputText id="nome" value="#{loginView.model.name}" size="30" required="true"
+										 requiredMessage="Insira um nome valido">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:message for="nome" />
+							
+							<p:outputLabel for="sobrenome" value="Sobrenome:" />
+							<p:inputText id="sobrenome" value="#{loginView.model.surname}" size="30" required="true"
+										 requiredMessage="Insita um sobrenome valido">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:message for="sobrenome" />
+							
+							<p:outputLabel for="login" value="Login:" />
+							<p:inputText id="login" value="#{loginView.model.username}" size="30" required="true"
+										 requiredMessage="Insira um login valido">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:message for="login" />
+							
+							<p:outputLabel for="senha" value="Senha:" />
+							<p:password id="senha" value="#{loginView.model.password}" size="30" required="true"
+										requiredMessage="Insira uma senha valida" match="senha2">
+								<f:validateLength minimum="3" />
+							</p:password>
+							<p:message for="senha" />
+							
+							<p:outputLabel for="senha2" value="Confirmar Senha:" />
+							<p:password id="senha2" value="#{loginView.model.password}" size="30" required="true"
+										requiredMessage="Insira uma senha valida">
+								<f:validateLength minimum="3" />
+							</p:password>
+							<p:message for="senha2" />
+							
+							<br/>
+							<br/>
+							
+							<p:commandButton type="submit" action="#{loginView.register}" ajax="false"
+									    	 update="@parent" value="Registrar" icon="ui-icon-note"/> 
+							
+						</h:panelGrid>
+						
+					</p:panel>
+				</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
